@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from models import userInfo
+from django.template import RequestContext
 
 def userData (request):
 	information = userInfo.objects.all()
@@ -21,14 +22,10 @@ def userData (request):
 
 
 def createUser (request):
-	obj = request.data
-	a = userInfo()
-	a.first_name = obj.first_name
-	a.last_name = obj.last_name
-	a.age = obj.age
-	a.address = obj.address
-	a.birth_date = obj.birth_date
+	if request.method == 'POST':
+		a = userInfo()
+		a.first_name = request.POST.get('first_name', '')
+		a.last_name = request.POST.get('last_name', '')
 
-	a.save()
-	return JsonResponse('Added successfully')
-
+		a.save()
+		return JsonResponse('Added successfully')

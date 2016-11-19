@@ -3,6 +3,6 @@ from views import userData, createUser
 
 urlpatterns = [
     url(r'^', userData, name = "userData"),
-    url(r'^POST/', createUser, name = "createUser")
+    url(r'^add/', createUser, name = "createUser")
 ]
 
