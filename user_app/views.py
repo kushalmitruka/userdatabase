@@ -17,3 +17,18 @@ def userData (request):
 
 	response = JsonResponse(result)
 	return response
+
+
+
+def createUser (request):
+	obj = request.data
+	a = userInfo()
+	a.first_name = obj.first_name
+	a.last_name = obj.last_name
+	a.age = obj.age
+	a.address = obj.address
+	a.birth_date = obj.birth_date
+
+	a.save()
+	return JsonResponse('Added successfully')
+
